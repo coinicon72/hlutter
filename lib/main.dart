@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hlutter/user_list.dart';
 import 'package:rxdart/rxdart.dart';
 
 void main() => runApp(new MyApp());
@@ -57,16 +58,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    super.initState();
+
     var s = MenuSection("title", Icons.access_alarms);
-    s.items.add(MenuItem("title", Icons.people));
-    s.items.add(MenuItem("title", Icons.book));
-    s.items.add(MenuItem("title", Icons.bookmark));
+    s.items.add(MenuItem("人员", Icons.people));
+    s.items.add(MenuItem("配方", Icons.book));
+    s.items.add(MenuItem("产品", Icons.bookmark));
     sections.add(s);
 
     s = MenuSection("title", Icons.access_alarms);
-    s.items.add(MenuItem("title", Icons.data_usage));
-    s.items.add(MenuItem("title", Icons.flag));
-    s.items.add(MenuItem("title", Icons.flag));
+    s.items.add(MenuItem("仓库", Icons.data_usage));
+    s.items.add(MenuItem("采购", Icons.flag));
+    s.items.add(MenuItem("基础数据", Icons.flag));
     sections.add(s);
   }
 
@@ -128,11 +131,13 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Icon(m.icon),
-                Text(m.title),
+                Icon(m.icon, size: 64.0, color: Color.fromARGB(128, 0, 0, 0),),
+                Text(m.title, style: TextStyle(fontSize: 16.0, color: Color.fromARGB(156, 0, 0, 0)),),
               ],
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => UserList()));
+            },
           );
         },
       ),
